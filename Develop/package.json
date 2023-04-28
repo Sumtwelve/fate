@@ -1,5 +1,5 @@
 {
-  "name": "JATE",
+  "name": "FATE",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -12,10 +12,11 @@
     "client": ""
   },
   "keywords": [],
-  "author": "",
+  "author": "Xandromous & Sumtwelve",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
+    "idb": "^7.1.1",
     "if-env": "^1.0.4"
   },
   "devDependencies": {

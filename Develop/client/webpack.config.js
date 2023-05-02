@@ -18,12 +18,58 @@ module.exports = () => {
       path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
-      
+      new HtmlWebpackPlugin({
+        title: 'FATE',
+        template: './index.html',
+        favicon: './favicon.ico'
+      }),
+      new InjectManifest({
+        swSrc: './src-sw.js',
+        swDest: 'service-worker.js'
+      }),
+      new WebpackPwaManifest({
+        name: "Finally, Another Text Editor",
+        short_name: "FATE",
+        description: "A simple text editor presented as a PWA.",
+        background_color: '#FFFFFF',
+        theme_color: 'white',
+        start_url: './',
+        publicPath: './',
+        icons: [
+          {
+            src: path.resolve('./src/images/logo.png'),
+            sizes: [96, 128, 192, 256, 384, 512],
+            destination: path.join('assets', 'icons')
+          },
+          {
+            src: path.resolve('./src/images/logo-invert.png'),
+            sizes: [96, 128, 192, 256, 384, 512],
+            destination: path.join('assets', 'icons-invert')
+          }
+        ]
+      })
     ],
 
     module: {
       rules: [
-        
+        {
+          test: /\.css$/i,
+          use: ['style-loader', 'css-loader']
+        },
+        {
+          test: /\.(png|jpe?g|svg|gif)$/i,
+          type: 'asset/resource'
+        },
+        {
+          test: /\.m?js$/i,
+          exclude: /(node_modules|bower_components)/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env']
+            }
+          }
+        }
       ],
     },
   };

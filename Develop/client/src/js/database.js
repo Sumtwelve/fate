@@ -12,17 +12,26 @@ const initdb = async () =>
     },
   });
 
+// This PUT function will be called every time the editor loses focus.
+// It is an auto-save feature.
 export const putDb = async (content) => {
   try {
-    console.log('Calling putDb() to post(?) to the database.');
+    console.log('POST to the database.');
     const fateDb = await openDB('fate', 1);
+    // First, we clear all entries in the 'fate' objectStore to prevent overcrowding.
+    // This ensures we will only ever have a max of 1 entry in this store.
+    const clear = await fateDb
+      .transaction('fate', 'readwrite')
+      .objectStore('fate')
+      .clear();
+    // Now we write to the database.
     const result = await fateDb
       .transaction('fate', 'readwrite')
       .objectStore('fate')
-      .add({ content }); // FIXME: does this need to be an object? Or can I just pass 'content' straight in?
-    console.log('Data saved to database!', result);
+      .add({ content });
+    console.log('Data saved to database! ID of new content:', result);
   } catch (err) {
-    console.error('putDb not implemented');
+    console.error(err);
   }
 }
 
@@ -30,10 +39,10 @@ export const getDb = async () => {
   try {
     console.log('GET all from the database');
     const fateDb = await openDB('fate', 1);
-    const result = contactsDb
+    const result = fateDb
         .transaction('fate', 'readonly')
         .objectStore('fate')
-        .getAll();
+        .get(0);
     console.log('Data fetched from database:', result);
     return result;
   } catch (err) {

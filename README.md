@@ -18,6 +18,6 @@ Have fun!
 
 The biggest problem I faced while working on this app was getting the browser to recognize it as installable. Luckily, that turned out to just be a pathing error, and the browser was looking in the wrong place for its service worker. Other than that, everything went rather smoothly.
 
-## Further Development & Contributions
+## Further Development & Contributions 🏗
 
 I will likely not be revisiting this project, and so I don't have anything planned for its future. But I am open to any suggestions or collaborations.

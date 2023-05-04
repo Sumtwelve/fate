@@ -4,7 +4,7 @@
 
 **Finally, Another Text Editor (FATE)** is a simple code-oriented text editor presented as an installable PWA. It is based off [code written by 2U](https://github.com/coding-boot-camp/cautious-meme), and finished and reworked by me. Undertaken as an effort to understand PWAs.
 
-![The logo for the FATE project](Develop/client/src/images/logo.png)
+![The logo for the FATE project](./client/src/images/logo.png)
 
 ## Usage ✍
 
